@@ -1,0 +1,108 @@
+PROCEDURE problem1()
+VAR
+    set1 := ARRAY_OF INTEGER[4]
+    set2 := ARRAY_OF INTEGER[5]
+    set_distinct : ARRAY_OF INTEGER[5]
+    sum , a, i, j, dist_index : INTEGER
+    exist : BOOLEAN 
+    
+BEGIN
+    set1 := {3, 1, 7, 9}
+    set2 := {2, 4, 1, 9, 3}
+    sum := 0
+    dist_index := 0
+
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        a := set1[i]
+
+        exist := FALSE 
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (a = set2[j]) THEN
+                exist := TRUE
+            END_IF    
+        END_FOR
+
+        IF (exist = FALSE) THEN
+            set_distinct [dist_index] := a
+            dist_index := dist_index + 1  
+        END_IF
+
+    END_FOR
+
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        a := set2[i]
+
+        exist := FALSE 
+        FOR j FROM 0 TO set1.length-1 STEP 1  DO
+            IF (a = set1[j]) THEN
+                exist := TRUE
+            END_IF    
+        END_FOR
+
+        IF (exist = FALSE) THEN
+            set_distinct [dist_index] := a
+            dist_index := dist_index + 1  
+        END_IF
+
+    END_FOR
+    
+    FOR s FROM 0 TO set_distinct.length-1 STEP 1  DO
+        sum := sum + set_distinct[s]
+
+    END_FOR
+    Write(sum)
+
+END
+
+
+PROCEDURE problem1_optimized()
+VAR
+    set1 := ARRAY_OF INTEGER[4]
+    set2 := ARRAY_OF INTEGER[5]
+    set_distinct : ARRAY_OF INTEGER[5]
+    sum , a, i, j, dist_index : INTEGER
+BEGIN
+    set1 := {3, 1, 7, 9}
+    set2 := {2, 4, 1, 9, 3}
+    sum := 0
+    dist_index := 0
+
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        a := set1[i]
+
+        j := 0
+        WHILE (j < set2.length And a != set2[j]) DO
+            j := j + 1
+        END_WHILE
+
+        IF (j = set2.length) THEN
+            set_distinct [dist_index] := a
+            dist_index := dist_index + 1  
+        END_IF
+
+    END_FOR
+
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        a := set2[i]
+
+        j := 0
+        WHILE (j < set1.length And a != set1[j]) DO
+            j := j + 1
+        END_WHILE
+
+        IF (j = set1.length) THEN
+            set_distinct [dist_index] := a
+            dist_index := dist_index + 1  
+        END_IF
+
+    END_FOR
+    
+    FOR s FROM 0 TO set_distinct.length-1 STEP 1  DO
+        sum := sum + set_distinct[s]
+
+    END_FOR
+    Write(sum)
+
+END
+
+
