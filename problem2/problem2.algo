@@ -1,11 +1,83 @@
-PROCEDURE dot_product(v1 : ARRAY_OF FLOAT[3] , v2 : ARRAY_OF FLOAT[3])
+FUNCTION  dot_product(v1 : ARRAY_OF FLOAT[3] , v2 : ARRAY_OF FLOAT[3]): FLOAT
 
 VAR
-    set_declarations
+    ps: FLOAT
+    i: INTEGER
 BEGIN
     ps := 0 
     FOR i FROM 0 TO 2 DO
         ps := ps + v1[i] * v2[i]; 
           
     END_FOR
+    
+    dot_product := ps
+
 END
+
+ALGORITHM algorithm_name
+VAR
+    set_declarations
+BEGIN
+    s := dot_product([1,1,1], [0,-1,1])
+    IF (s = 0) THEN
+        set_instructions
+    ELSE
+        set_instructions
+    END_IF
+END
+
+
+
+//////////////////////////////////////////
+
+PROCEDURE swap(VAR xp, VAR yp : INTEGER)
+VAR
+    tmp : INTEGER
+BEGIN
+    tmp := xp;
+    xp := yp;
+    yp := tmp;
+END
+/*Bubble sort*/
+PROCEDURE bubble_sort(VAR tab : ARRAY_OF INTEGER)
+VAR
+    i, j, n : INTEGER;
+BEGIN
+    n := tab.length;
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        // Last i elements are already in place
+    FOR j FROM 0 TO n-1-1 STEP 1  DO
+        IF (tab[j] > tab[j+1]) THEN
+            swap(tab[j], tab[j+1])
+        END_IF
+    END_FOR    
+    END_FOR
+END
+//////////////////////////////////////
+
+FUNCTION binary_search(arr : ARRAY_OF INTEGER, x : inte
+) : INTEGER
+VAR
+    left, right, mid : INTEGER
+BEGIN
+    left := 0;
+    right := arr.length -1;
+    WHILE (left < right) DO
+        mid := left +(right-left)/2;
+        // check if x is present at midel 
+        IF (arr[mid] = x) THEN
+            RETURN mid;
+        END_IF
+        // if x greater, ignore left half
+        IF (arr[mid] < x) THEN
+            left := mid +1 ;
+            ELSE
+        // if x is smaller , ignore right half
+            right := mid -1;
+        END_IF
+    END_WHILE
+    RETURN -1
+    
+END
+///////////////////////////////////////////////
+

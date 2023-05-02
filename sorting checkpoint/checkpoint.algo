@@ -1,0 +1,19 @@
+
+FUNCTION insertion_sort(Arr : ARRAY_OF INTEGER) 
+VAR
+    i, j, n : INTEGER
+BEGIN
+    n := arr.length
+    FOR i FROM 0 TO n-1 STEP 1 DO
+        j :=  i 
+        FOR j FROM i-1 TO 0 STEP -1 DO
+            IF (j > 0, Arr[j-1] > Arr[j]) THEN
+                swap(Arr[j], Arr[j-1])
+            END_IF
+        END_FOR
+        END_WHILE
+    END_FOR
+    RETURN value ;
+END
+
+
