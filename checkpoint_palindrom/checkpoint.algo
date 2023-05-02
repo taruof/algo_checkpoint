@@ -1,0 +1,13 @@
+function checkPalindrome(str){
+    let reversed = str.split("").reverse().join("")
+    return str === reversed
+  }
+  let str1= "lol"
+  let str2= "kayak"
+  let str3= "bannana"
+  let str4= "bonbon"
+
+  console.log(checkPalindrome(str1))
+  console.log(checkPalindrome(str2))
+  console.log(checkPalindrome(str3))
+  console.log(checkPalindrome(str4))
